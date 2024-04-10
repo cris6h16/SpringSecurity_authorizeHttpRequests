@@ -6,10 +6,11 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.expression.WebExpressionAuthorizationManager;
+import org.springframework.security.web.util.matcher.RegexRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig {
+public class RoleBasedConfig {
 
     @Bean
     SecurityFilterChain web(HttpSecurity http) throws Exception {
@@ -21,8 +22,8 @@ public class SecurityConfig {
                         .requestMatchers("/auth").hasAuthority("USER")
                         .requestMatchers("/auth/{name}").access(expression)
                         .requestMatchers("/public/**").permitAll()
+                        .requestMatchers(RegexRequestMatcher.regexMatcher("/resource/[A-Za-z0-9]+")).hasRole("USER")
                         .anyRequest().authenticated()
-                        Matching Using Regular Expressions
                 );
         // ...
 

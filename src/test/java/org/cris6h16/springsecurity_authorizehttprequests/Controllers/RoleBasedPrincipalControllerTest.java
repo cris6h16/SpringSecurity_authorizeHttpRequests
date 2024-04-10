@@ -11,9 +11,13 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+/*
+ use with: SecurityConfig/RoleBasedConfig.java as a configuration
+
+ */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
-class PrincipalControllerTest {
+class RoleBasedPrincipalControllerTest {
 
     @Autowired
     MockMvc mvc;
